@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const ListItemStyled = styled.span`
+	position: relative;
+	display: flex;
+`;
+
+export const ButtonsStyled = styled.div`
+	position: absolute;
+	right: 2%;
+`;
+
 export const ButtonStyled = styled.button`
 	font-weight: ${props => props.important ? "bold" : "normal"};
 	color: ${props => props.important ? "steelblue" : "black"};

@@ -5,16 +5,11 @@ import ItemAddForm from "../item-add-form/item-add-form";
 import { AppStyled } from './app.styled';
 
 const App = () => {
-	
-	let maxId = 100;
-	
 	const createTodoItem = (label) => {
 		return {
 			label,
 			important: false,
 			editing: false,
-			done: false,
-			id: maxId++
 		}
 	};
 	
@@ -23,13 +18,12 @@ const App = () => {
 			createTodoItem("Fill out a tax return"),
 			createTodoItem("Build an App"),
 			createTodoItem("Clean the apartment")
-		],
-		term: ""
+		]
 	});
 	
-	const ToggleChanged = (id, label) => {
-		const newItems = state.todoData.map((item) => {
-			if (item.id === id) {
+	const ToggleChanged = (itemIndex, label) => {
+		const newItems = state.todoData.map((item, index) => {
+			if (index === itemIndex) {
 				return {
 					...item,
 					editing: !item.editing,
@@ -40,14 +34,13 @@ const App = () => {
 		});
 		
 		setState({
-			...state,
 			todoData: newItems
 		});
 	};
 	
-	const ToggleImportant = (id) => {
-		const newItems = state.todoData.map((item) => {
-			if (item.id === id) {
+	const ToggleImportant = (itemIndex) => {
+		const newItems = state.todoData.map((item, index) => {
+			if (itemIndex === index) {
 				return {
 					...item,
 					important: !item.important
@@ -57,22 +50,20 @@ const App = () => {
 		});
 		
 		setState({
-			...state,
 			todoData: newItems
 		});
 	};
 	
-	const deleteItem = (id) => {
+	const deleteItem = (itemIndex) => {
 		setState(({todoData}) => {
-			const idx = todoData.findIndex((el) => el.id === id);
+			const idx = todoData.findIndex((el, index) => itemIndex === index);
 			const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
 			return {
 				todoData: newArray
 			}
 		});
 	};
-	
-	
+
 	const addItem = (text) => {
 		const newItem = createTodoItem(text);
 		
@@ -84,16 +75,15 @@ const App = () => {
 		});
 	};
 	
-	const { todoData } = state;
-	
 	return ( 
 		<AppStyled >
-			<AppHeader / >
-			<TodoList todoData = {todoData}
-			onToggleImportant = { ToggleImportant }
-			onToggleChange = { ToggleChanged }
-			onDeleted = { deleteItem } /> 
-			<ItemAddForm onAdded = { addItem } /> 
+			<AppHeader />
+			<TodoList todoData = {state.todoData}
+				onToggleImportant = { ToggleImportant }
+				onToggleChange = { ToggleChanged }
+				onDeleted = { deleteItem }
+			/> 
+			<ItemAddForm onAdded = { addItem }/> 
 		</AppStyled>
 		);
 };

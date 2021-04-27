@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { ItemAddFormStyled, ButtonStyled } from "./item-add-form.styled.js";
 
-const ItemAddForm = ({onAdded}) => {
+const ItemAddForm = ({ onAdded }) => {
 	
-	const [ state, setState ] = useState({newLabel: ''});
-	
-	const onChangeInput =(e) => {
+	const [state, setState] = useState({newLabel: ''});
+
+	const onChangeInput = (e) => {
 		setState({
 			newLabel: e.target.value
 		});
 	};
 	
-	const onSubmitFunc  =(e) => {
+	const onSubmitFunc = (e) => {
 		e.preventDefault();
 		onAdded(state.newLabel);
 		setState({newLabel: ''})
@@ -26,5 +26,3 @@ const ItemAddForm = ({onAdded}) => {
 	};
 	
 	export default ItemAddForm;
-	
-	
