@@ -18,7 +18,7 @@ const ItemAddForm = ({ onAdded }) => {
 	};
 	
 	return (
-		<ItemAddFormStyled onSubmit={onSubmitFunc}>
+		<ItemAddFormStyled data-testid='form' onSubmit={onSubmitFunc}>
 			<input type="text" placeholder="What needs to be done" className="form-control mr-2" onChange={onChangeInput} value={state.newLabel} />
 			<ButtonStyled className="btn btn-outline-secondary">Add Item</ButtonStyled>
 		</ItemAddFormStyled>
