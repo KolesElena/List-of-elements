@@ -7,7 +7,7 @@ export const ListItemStyled = styled.span`
 
 export const ButtonsStyled = styled.div`
 	position: absolute;
-	right: 2%;
+	right: 1%;
 `;
 
 export const ButtonStyled = styled.button`
@@ -20,7 +20,7 @@ export const ButtonStyled = styled.button`
 export const LabelStyled = styled.span`
 	font-weight: ${props => props.important ? "bold" : "normal"};
 	color: ${props => props.important ? "steelblue" : "black"};
-	margin-left: 1.25rem;
+	margin-left: 0;
 	line-height: 35px;
 	cursor: pointer;
 	user-select: none;
